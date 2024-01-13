@@ -12,9 +12,9 @@ public class Image {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-    String description;
-    String dimensions;
+    private int id;
+    private String description;
+    private String dimensions;
 
     public Image(int id, String description, String dimensions, Blog blog) {
         this.id = id;
@@ -25,7 +25,7 @@ public class Image {
 
     @ManyToOne
     @JoinColumn
-    Blog blog;
+    private Blog blog;
 
     public Blog getBlog() {
         return blog;

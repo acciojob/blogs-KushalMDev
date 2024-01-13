@@ -17,13 +17,13 @@ import javax.persistence.OneToMany;
 public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int blogId;
-    String title;
-    String content;
-    Date publishDate;
+    private int blogId;
+    private String title;
+    private String content;
+    private Date publishDate;
     @JoinColumn
     @ManyToOne
-    User user;
+    private User user;
 
     public User getUser() {
         return user;
@@ -48,9 +48,6 @@ public class Blog {
         return blogId;
     }
 
-    public void setBlogId(int blogId) {
-        this.blogId = blogId;
-    }
 
     public String getTitle() {
         return title;

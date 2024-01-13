@@ -14,8 +14,8 @@ import javax.persistence.OneToMany;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int userId;
-    String username;
+    private int userId;
+    private String username;
 
     public User(int userId, String username, String firstName, String lastName, String password, List<Blog> blogList) {
         this.userId = userId;
@@ -29,17 +29,11 @@ public class User {
     public User() {
     }
 
-    String firstName;
-    String lastName;
-    String password;
+    private String firstName;
+    private String lastName;
+    private String password;
 
-    public int getUserId() {
-        return userId;
-    }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 
     public String getUsername() {
         return username;
@@ -82,5 +76,5 @@ public class User {
     }
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    List<Blog> blogList = new ArrayList<>();
+    private List<Blog> blogList = new ArrayList<>();
 }
