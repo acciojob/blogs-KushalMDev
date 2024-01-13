@@ -14,7 +14,15 @@ import javax.persistence.OneToMany;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userId;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     private String firstName;
     private String lastName;
@@ -25,7 +33,7 @@ public class User {
     private List<Blog> blogList = new ArrayList<>();
 
     public User(int userId, String username, String firstName, String lastName, String password, List<Blog> blogList) {
-        this.userId = userId;
+        this.id = userId;
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -76,12 +84,6 @@ public class User {
         this.blogList = blogList;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
+   
 
 }

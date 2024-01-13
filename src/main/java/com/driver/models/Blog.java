@@ -19,15 +19,29 @@ import org.hibernate.annotations.CreationTimestamp;
 public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int blogId;
-    public void setBlogId(int blogId) {
-        this.blogId = blogId;
+    private int id;
+   
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Date getPubDate() {
+        return pubDate;
+    }
+
+    public void setPubDate(Date pubDate) {
+        this.pubDate = pubDate;
     }
 
     private String title;
     private String content;
     @CreationTimestamp
-    private Date publishDate;
+    private Date pubDate;
     @JoinColumn
     @ManyToOne
     private User user;
@@ -52,9 +66,7 @@ public class Blog {
         this.imageList = imageList;
     }
 
-    public int getBlogId() {
-        return blogId;
-    }
+    
 
 
     public String getTitle() {
@@ -73,19 +85,15 @@ public class Blog {
         this.content = content;
     }
 
-    public Date getPublishDate() {
-        return publishDate;
-    }
+   
 
-    public void setPublishDate(Date publishDate) {
-        this.publishDate = publishDate;
-    }
+    
 
     public Blog(int blogId, String title, String content, Date publishDate, List<Image> imageList,User user) {
-        this.blogId = blogId;
+        this.id = blogId;
         this.title = title;
         this.content = content;
-        this.publishDate = publishDate;
+        this.pubDate = publishDate;
         this.imageList = imageList;
         this.user=user;
     }
