@@ -3,7 +3,7 @@ package com.driver.models;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,17 +13,26 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
 public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int blogId;
+    public void setBlogId(int blogId) {
+        this.blogId = blogId;
+    }
+
     private String title;
     private String content;
+    @CreationTimestamp
     private Date publishDate;
     @JoinColumn
     @ManyToOne
     private User user;
+    @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL)
+    private List<Image> imageList = new ArrayList<Image>();
 
     public User getUser() {
         return user;
@@ -33,8 +42,7 @@ public class Blog {
         this.user = user;
     }
 
-    @OneToMany(mappedBy = "blog", cascade = CascadeType.ALL)
-    private List<Image> imageList = new ArrayList<Image>();
+   
 
     public List<Image> getImageList() {
         return imageList;
@@ -73,16 +81,17 @@ public class Blog {
         this.publishDate = publishDate;
     }
 
-    public Blog(int blogId, String title, String content, Date publishDate, List<Image> imageList) {
+    public Blog(int blogId, String title, String content, Date publishDate, List<Image> imageList,User user) {
         this.blogId = blogId;
         this.title = title;
         this.content = content;
         this.publishDate = publishDate;
         this.imageList = imageList;
+        this.user=user;
     }
 
     public Blog() {
-        super();
+        
     }
 
 }

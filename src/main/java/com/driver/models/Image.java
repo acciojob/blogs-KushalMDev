@@ -15,6 +15,10 @@ public class Image {
     private int id;
     private String description;
     private String dimensions;
+    
+    @ManyToOne
+    @JoinColumn
+    private Blog blog;
 
     public Image(int id, String description, String dimensions, Blog blog) {
         this.id = id;
@@ -23,9 +27,6 @@ public class Image {
         this.blog = blog;
     }
 
-    @ManyToOne
-    @JoinColumn
-    private Blog blog;
 
     public Blog getBlog() {
         return blog;
@@ -36,7 +37,7 @@ public class Image {
     }
 
     public Image() {
-        super();
+        
     }
 
     public int getId() {
