@@ -37,10 +37,27 @@ public class ImageService {
         // `screenDimensions`
         Image image = imageRepository2.findById(id).get();
         String dimension = image.getDimensions();
-        int length = (int) (dimension.charAt(0) - '0');
-        int breadth = (int) (dimension.charAt(2) - '0');
-        int givenLength = (int) (screenDimensions.charAt(0) - '0');
-        int givenBreadth = (int) (screenDimensions.charAt(2) - '0');
+        int Xindex=-1,i=0;
+        for(char c:dimension.toCharArray()){
+            if(c=='x' || c=='X'){
+                Xindex=i;
+                break;
+            }
+            i++;
+        }
+
+        int length = Integer.parseInt(dimension.substring(0, Xindex));
+        int breadth =Integer.parseInt(dimension.substring(Xindex+1));
+         Xindex=-1;i=0;
+        for(char c:screenDimensions.toCharArray()){
+            if(c=='x' || c=='X'){
+                Xindex=i;
+                break;
+            }
+            i++;
+        }
+        int givenLength = Integer.parseInt(screenDimensions.substring(0, Xindex));
+        int givenBreadth = Integer.parseInt(screenDimensions.substring(Xindex+1));
         int givenArea = givenBreadth * givenLength;
         int imageArea = length * breadth;
         if(givenArea==0 || imageArea==0)return 0;
