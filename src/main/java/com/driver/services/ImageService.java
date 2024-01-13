@@ -43,6 +43,7 @@ public class ImageService {
         int givenBreadth = (int) (screenDimensions.charAt(2) - '0');
         int givenArea = givenBreadth * givenLength;
         int imageArea = length * breadth;
+        if(givenArea==0 || imageArea==0)return 0;
         return givenArea / imageArea;
     }
 }
